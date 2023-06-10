@@ -4,7 +4,7 @@ resource "aws_vpc" "main" {
     Name = "${var.env}-Roboshop-VPC"
   }
 }
-/* 
+
 resource "aws_vpc_peering_connection" "main" {
   #peer_owner_id = var.peer_owner_id
   peer_vpc_id   = aws_vpc.main.id
@@ -14,7 +14,7 @@ resource "aws_vpc_peering_connection" "main" {
   tags = {
     Name = "${var.env}-Roboshop-VPC-peering-connection"
   }
-} */
+}
 
 resource "aws_subnet" "public_subnets" {
     vpc_id     = aws_vpc.main.id
@@ -43,7 +43,7 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
-/* resource "aws_route_table" "default_rt" {
+resource "aws_route_table" "default_rt" {
   vpc_id = data.aws_vpc.default.id
 
 
@@ -60,9 +60,9 @@ resource "aws_internet_gateway" "igw" {
   tags = {
     Name = "${var.env}-default-public-routetable"
   }
-} */
+}
 
-/* resource "aws_subnet" "default_public_subnets" {
+resource "aws_subnet" "default_public_subnets" {
     vpc_id     = data.aws_vpc.default.id
     cidr_block = data.aws_vpc.default.cidr_block
     tags={
@@ -73,7 +73,7 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_route_table_association" "default" {
   subnet_id      = aws_subnet.default_public_subnets.id
   route_table_id = aws_route_table.default_rt.id
-} */
+}
 
 
 resource "aws_eip" "eip" {
@@ -100,7 +100,7 @@ resource "aws_nat_gateway" "nat" {
   
 }
 
-/* resource "aws_route_table" "public_rt" {
+resource "aws_route_table" "public_rt" {
   vpc_id = aws_vpc.main.id
 
   route {
@@ -146,4 +146,4 @@ resource "aws_route_table_association" "private_subnet_assoc" {
     for_each = var.private_cidr
     subnet_id      = aws_subnet.private_subnets[each.value["name"]].id
     route_table_id = aws_route_table.private_rt[each.value["name"]].id
-} */
+}
