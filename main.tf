@@ -1,7 +1,7 @@
 resource "aws_vpc" "main" {
   cidr_block = var.cidr_block
   tags = {
-    Name = "${env}-Roboshop-VPC"
+    Name = "${var.env}-Roboshop-VPC"
   }
 }
 
@@ -12,7 +12,7 @@ resource "aws_vpc_peering_connection" "main" {
   auto_accept   = true
 
   tags = {
-    Name = "${env}-Roboshop-VPC-peering-connection"
+    Name = "${var.env}-Roboshop-VPC-peering-connection"
   }
 }
 
@@ -22,7 +22,7 @@ resource "aws_subnet" "public_subnets" {
     availability_zone = each.value["availability_zone"]
     cidr_block = each.value["cidr"]
     tags={
-        Name="${env}-${each.value["name"]}-subnet"
+        Name="${var.env}-${each.value["name"]}-subnet"
     }
 }
 
@@ -32,14 +32,14 @@ resource "aws_subnet" "private_subnets" {
     availability_zone = each.value["availability_zone"]
     cidr_block = each.value["cidr"]
     tags={
-        Name="${env}-${each.value["name"]}-subnet"
+        Name="${var.env}-${each.value["name"]}-subnet"
     }
 }
 
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
   tags = {
-    Name = "${env}-Internet-gateway"
+    Name = "${var.env}-Internet-gateway"
   }
 }
 
@@ -58,7 +58,7 @@ resource "aws_route_table" "default_rt" {
   }
 
   tags = {
-    Name = "${env}-default-public-routetable"
+    Name = "${var.env}-default-public-routetable"
   }
 }
 
@@ -80,7 +80,7 @@ resource "aws_eip" "eip" {
     vpc=true
     for_each = var.public_cidr
     tags = {
-        Name = "${env}-${each.value["name"]}-Elastic-IP"
+        Name = "${var.env}-${each.value["name"]}-Elastic-IP"
     }
 }
 
@@ -90,7 +90,7 @@ resource "aws_nat_gateway" "nat" {
     subnet_id     = aws_subnet.public_subnets[each.value["name"]].id
     
     tags = {
-        Name = "${env}-${each.value["name"]}-NAT-Gateway"
+        Name = "${var.env}-${each.value["name"]}-NAT-Gateway"
     }
 
   # To ensure proper ordering, it is recommended to add an explicit dependency
@@ -112,7 +112,7 @@ resource "aws_route_table" "public_rt" {
   }
   for_each = var.public_cidr
   tags = {
-    Name = "${env}-${each.value["name"]}-route-table"
+    Name = "${var.env}-${each.value["name"]}-route-table"
   }
 }
 
@@ -137,7 +137,7 @@ resource "aws_route_table" "private_rt" {
   }
   for_each = var.private_cidr
   tags = {
-    Name = "${env}-${each.value["name"]}-route-table"
+    Name = "${var.env}-${each.value["name"]}-route-table"
   }
 }
 resource "aws_route_table_association" "private_subnet_assoc" {
