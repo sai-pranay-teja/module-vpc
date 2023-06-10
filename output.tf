@@ -1,4 +1,4 @@
-output "nat"{
-    value=aws_nat_gateway.nat
+output "subnet"{
+    value=aws_subnet.public_subnets
 }
 
