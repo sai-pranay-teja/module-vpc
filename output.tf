@@ -1,4 +1,4 @@
 output "subnet"{
-    value=aws_subnet.public_subnets
+    value=aws_subnet.public_subnets["public_az1"]
 }
 
