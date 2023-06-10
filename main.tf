@@ -17,8 +17,8 @@ resource "aws_vpc_peering_connection" "main" {
 }
 
 resource "aws_subnet" "public_subnets" {
-    for_each = var.public_cidr
     vpc_id     = aws_vpc.main.id
+    for_each = var.public_cidr
     availability_zone = each.value["availability_zone"]
     cidr_block = each.value["cidr"]
     tags={
