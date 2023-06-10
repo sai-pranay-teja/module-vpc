@@ -79,7 +79,8 @@ resource "aws_route_table_association" "default" {
 resource "aws_eip" "eip" {
     #vpc=true
     for_each = var.public_cidr
-    vpc=true
+    domain="vpc"
+
     
     tags = {
         Name = "${var.env}-${each.value["name"]}-Elastic-IP"
