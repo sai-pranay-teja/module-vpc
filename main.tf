@@ -100,7 +100,7 @@ resource "aws_nat_gateway" "nat" {
   depends_on = [aws_eip.eip]
 }
 
-resource "aws_route_table" "public_rt" {
+/* resource "aws_route_table" "public_rt" {
   vpc_id = aws_vpc.main.id
 
   route {
@@ -146,4 +146,4 @@ resource "aws_route_table_association" "private_subnet_assoc" {
     for_each = var.private_cidr
     subnet_id      = aws_subnet.private_subnets[each.value["name"]].id
     route_table_id = aws_route_table.private_rt[each.value["name"]].id
-}
+} */
