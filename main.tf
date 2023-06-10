@@ -43,7 +43,7 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
-resource "aws_route_table" "default_rt" {
+/* resource "aws_route_table" "default_rt" {
   vpc_id = data.aws_vpc.default.id
 
 
@@ -60,7 +60,7 @@ resource "aws_route_table" "default_rt" {
   tags = {
     Name = "${var.env}-default-public-routetable"
   }
-}
+} */
 
 resource "aws_subnet" "default_public_subnets" {
     vpc_id     = data.aws_vpc.default.id
