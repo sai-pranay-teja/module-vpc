@@ -1,3 +1,4 @@
-output "vpc_main"{
-    value=aws_vpc.main
+output "nat"{
+    value=aws_nat_gateway.nat
 }
+
