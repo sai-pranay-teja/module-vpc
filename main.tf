@@ -4,7 +4,7 @@ resource "aws_vpc" "main" {
     Name = "${var.env}-Roboshop-VPC"
   }
 }
-
+/* 
 resource "aws_vpc_peering_connection" "main" {
   #peer_owner_id = var.peer_owner_id
   peer_vpc_id   = aws_vpc.main.id
@@ -14,7 +14,7 @@ resource "aws_vpc_peering_connection" "main" {
   tags = {
     Name = "${var.env}-Roboshop-VPC-peering-connection"
   }
-}
+} */
 
 resource "aws_subnet" "public_subnets" {
     vpc_id     = aws_vpc.main.id
@@ -62,7 +62,7 @@ resource "aws_internet_gateway" "igw" {
   }
 } */
 
-resource "aws_subnet" "default_public_subnets" {
+/* resource "aws_subnet" "default_public_subnets" {
     vpc_id     = data.aws_vpc.default.id
     cidr_block = data.aws_vpc.default.cidr_block
     tags={
@@ -84,7 +84,7 @@ resource "aws_eip" "eip" {
     tags = {
         Name = "${var.env}-${each.value["name"]}-Elastic-IP"
     }
-}
+} */
 
 /* resource "aws_nat_gateway" "nat" {
     for_each = var.public_cidr
