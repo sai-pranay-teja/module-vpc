@@ -1,4 +1,4 @@
 output "eip"{
-    value=aws_eip.eip["public-az1"].id
+    value=aws_eip.nat["public-az1"].id
 }
 
