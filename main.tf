@@ -124,14 +124,16 @@ resource "aws_route_table_association" "public_subnet_assoc" {
     subnet_id      = aws_subnet.public_subnets[each.value["name"]].id
     route_table_id = aws_route_table.public_rt[each.value["name"]].id
 }
-
+/* 
 
 resource "aws_route_table" "private_rt" {
   vpc_id = aws_vpc.main.id
 
   route {
     cidr_block = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.nat[each.value["name"]].id
+    #nat_gateway_id = aws_nat_gateway.nat[each.value["name"]].id
+    nat_gateway_id = lookup(aws_nat_gateway.nat, )
+
   }
 
   route {
@@ -147,4 +149,4 @@ resource "aws_route_table_association" "private_subnet_assoc" {
     for_each = var.private_cidr
     subnet_id      = aws_subnet.private_subnets[each.value["name"]].id
     route_table_id = aws_route_table.private_rt[each.value["name"]].id
-}
+} */
