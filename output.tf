@@ -1,4 +1,4 @@
-output "eip"{
-    value=aws_eip.nat["public-az1"].id
+output "nat"{
+    value=aws_nat_gateway.nat["public-az1"].id
 }
 
