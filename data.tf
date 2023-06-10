@@ -4,7 +4,7 @@ data "aws_vpc" "default" {
 
 data "aws_internet_gateway" "default" {
   filter {
-    name   = "igw-1"
+    name   = "attachment.vpc-id"
     values = [var.default_vpc_id]
   }
 }
