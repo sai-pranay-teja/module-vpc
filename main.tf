@@ -64,7 +64,7 @@ resource "aws_route_table" "default_rt" {
 
 resource "aws_subnet" "default_public_subnets" {
     vpc_id     = data.aws_vpc.default.id
-    cidr_block = data.aws_vpc.default.cidr_block
+    cidr_block = "172.31.96.0/20"
     tags={
         Name="Default_subnet"
     }
