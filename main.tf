@@ -6,7 +6,7 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_vpc_peering_connection" "main" {
-  #peer_owner_id = var.peer_owner_id
+  peer_owner_id = data.aws_caller_identity.default.account_id
   peer_vpc_id   = aws_vpc.main.id
   vpc_id        = data.aws_vpc.default.id
   auto_accept   = true
