@@ -73,7 +73,7 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_route_table_association" "default" {
   subnet_id      = aws_subnet.default_public_subnets.id
   route_table_id = aws_route_table.default_rt.id
-}
+} */
 
 
 resource "aws_eip" "eip" {
@@ -84,9 +84,9 @@ resource "aws_eip" "eip" {
     tags = {
         Name = "${var.env}-${each.value["name"]}-Elastic-IP"
     }
-} */
+}
 
-/* resource "aws_nat_gateway" "nat" {
+resource "aws_nat_gateway" "nat" {
     for_each = var.public_cidr
     allocation_id = aws_eip.eip[each.value["name"]].id
     subnet_id     = aws_subnet.public_subnets[each.value["name"]].id
@@ -98,7 +98,7 @@ resource "aws_eip" "eip" {
   # To ensure proper ordering, it is recommended to add an explicit dependency
   # on the Internet Gateway for the VPC.
   depends_on = [aws_eip.eip]
-} */
+}
 
 /* resource "aws_route_table" "public_rt" {
   vpc_id = aws_vpc.main.id
