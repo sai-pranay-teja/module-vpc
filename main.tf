@@ -26,7 +26,7 @@ resource "aws_subnet" "public_subnets" {
     }
 }
 
-/* resource "aws_subnet" "private_subnets" {
+resource "aws_subnet" "private_subnets" {
     for_each = var.private_cidr
     vpc_id     = aws_vpc.main.id
     availability_zone = each.value["availability_zone"]
@@ -36,7 +36,7 @@ resource "aws_subnet" "public_subnets" {
     }
 }
 
-resource "aws_internet_gateway" "igw" {
+/* resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
   tags = {
     Name = "${var.env}-Internet-gateway"
