@@ -5,7 +5,7 @@ resource "aws_vpc" "main" {
   }
 }
 
-resource "aws_vpc_peering_connection" "main" {
+/* resource "aws_vpc_peering_connection" "main" {
   peer_owner_id = data.aws_caller_identity.default.account_id
   peer_vpc_id   = aws_vpc.main.id
   vpc_id        = data.aws_vpc.default.id
@@ -14,7 +14,7 @@ resource "aws_vpc_peering_connection" "main" {
   tags = {
     Name = "${var.env}-Roboshop-VPC-peering-connection"
   }
-}
+} */
 
 resource "aws_subnet" "public_subnets" {
     vpc_id     = aws_vpc.main.id
@@ -26,7 +26,7 @@ resource "aws_subnet" "public_subnets" {
     }
 }
 
-resource "aws_subnet" "private_subnets" {
+/* resource "aws_subnet" "private_subnets" {
     for_each = var.private_cidr
     vpc_id     = aws_vpc.main.id
     availability_zone = each.value["availability_zone"]
@@ -152,4 +152,4 @@ resource "aws_route_table_association" "private_subnet_assoc" {
     for_each = var.private_cidr
     subnet_id      = aws_subnet.private_subnets[each.value["name"]].id
     route_table_id = aws_route_table.private_rt[each.value["name"]].id
-}
+} */
