@@ -15,5 +15,5 @@ output "private_subnets"{
 }
 
 output "default_public_subnets"{
-    value=aws_subnet.default_public_subnets.id
+    value=aws_subnet.default_public_subnets
 }
