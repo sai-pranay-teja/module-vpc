@@ -13,3 +13,7 @@ output "public_subnets"{
 output "private_subnets"{
     value=aws_subnet.private_subnets
 }
+
+output "default_subnets"{
+    value=aws_subnet.default_public_subnets
+}
