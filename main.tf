@@ -63,16 +63,9 @@ resource "aws_route_table" "default_rt" {
   }
 }
 
-resource "aws_subnet" "default_public_subnets" {
-    vpc_id     = data.aws_vpc.default.id
-    cidr_block = "172.31.96.0/20"
-    tags={
-        Name="Default_subnet"
-    }
-}
 
 resource "aws_route_table_association" "default" {
-  subnet_id      = aws_subnet.default_public_subnets.id
+  subnet_id      = "subnet-091b2024261b704f3"
   route_table_id = aws_route_table.default_rt.id
 }
 
